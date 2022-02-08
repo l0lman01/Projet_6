@@ -2,5 +2,5 @@
 
 #Game of life
 
--GONZALEZ Rafael
--PHAM-VU Léo
+- GONZALEZ Rafael
+- PHAM-VU Léo
