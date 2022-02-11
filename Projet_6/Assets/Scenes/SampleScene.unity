@@ -286,7 +286,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a8f5ec6635bee49b2ef3ead1253c00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8.18
+  _stepDelay: 0
+  _gridManager: {fileID: 0}
+  _aliveMaterial: {fileID: 0}
+  _deadMaterial: {fileID: 0}
 --- !u!4 &88720029
 Transform:
   m_ObjectHideFlags: 0
@@ -3130,6 +3133,10 @@ PrefabInstance:
       propertyPath: sliderRows
       value: 
       objectReference: {fileID: 1765844292}
+    - target: {fileID: 8856326510351541628, guid: d07739051801fa54c9ebdaa099da5b58, type: 3}
+      propertyPath: _cellPrefab
+      value: 
+      objectReference: {fileID: 7270330464842658239, guid: aeb91f4d4fcf1404bbba2d605988523d, type: 3}
     - target: {fileID: 8856326510351541628, guid: d07739051801fa54c9ebdaa099da5b58, type: 3}
       propertyPath: m_cellPrefab
       value: 
