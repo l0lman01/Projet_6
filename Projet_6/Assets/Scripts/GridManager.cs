@@ -32,7 +32,6 @@ public class GridManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        GenerateGrid();
     }
     public void GenerateGrid()
     {

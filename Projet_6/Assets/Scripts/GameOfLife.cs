@@ -4,27 +4,30 @@ using UnityEngine;
 
 public class GameOfLife : MonoBehaviour
 {
-    //public float _stepDelay;
-    //void Update()
-    //{
-    //    _counter += Time.deltaTime;
+    [Range(0, 20)]
+    public float speed = 5f;
 
-    //    if (_counter <_stepDelay)
-    //    {
-    //        SimulationStep();
-    //        _counter = 0;
-    //    }
-    //}
-    //private void SimulationStep()
-    // {
-    //     Debug.Log("SimulationStep");
+    private float timer = 0;
 
-    //     int n = CountNeighbors(col, row);
-    // }
 
-    // private void CountNeighbors(col, row)
-    // {
-    //     return 0;
-    // }
-    //private float _counter;
+    void Update()
+    {
+        //CountNeighbour();
+
+
+
+    }
+
+
+    public void simulationSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+        if (timer < speed)
+        {
+            timer = 0f;
+        }
+        else{
+            timer += Time.deltaTime;
+        }
+    }
 }
