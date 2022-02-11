@@ -10,8 +10,6 @@ public class UiManager : MonoBehaviour
     [SerializeField] private Slider _colsSlider;
     [SerializeField] private TMP_Text _rowsText;
     [SerializeField] private TMP_Text _colsText;
-
-
     private void Start()
     {
         ChangeRows(_rowsSlider.value);

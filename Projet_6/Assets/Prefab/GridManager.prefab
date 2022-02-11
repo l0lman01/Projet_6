@@ -43,6 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9150f3be1f5b730418c3d913385bc8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cellPrefab: {fileID: -2800175836280040745, guid: aeb91f4d4fcf1404bbba2d605988523d, type: 3}
-  m_NumCol: 10
-  m_NumRows: 10
+  _numCol: 10
+  _numLines: 10
+  _cellPrefab: {fileID: 8048617777126111646, guid: aeb91f4d4fcf1404bbba2d605988523d, type: 3}
