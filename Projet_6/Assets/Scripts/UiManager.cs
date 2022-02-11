@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
 {
-    //[SerializeField] private Slider _rowsSlider;
-   // [SerializeField] private Slider _colsSlidert;
+    [SerializeField] private Slider _rowsSlider;
+    [SerializeField] private Slider _colsSlider;
     [SerializeField] private TMP_Text _rowsText;
     [SerializeField] private TMP_Text _colsText;
     private void Start()
     {
-      //  ChangeRows(_rowsSlider.value);
-       // ChangeCols(_colsSlider.value);
+        ChangeRows(_rowsSlider.value);
+        ChangeCols(_colsSlider.value);
     }
 
     public void ChangeRows(float value)

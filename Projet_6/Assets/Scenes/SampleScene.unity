@@ -1313,7 +1313,7 @@ MonoBehaviour:
       - m_Target: {fileID: 8856326510351541628, guid: d07739051801fa54c9ebdaa099da5b58, type: 3}
         m_TargetAssemblyTypeName: GridManager, Assembly-CSharp
         m_MethodName: ChangeCols
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2046,7 +2046,7 @@ MonoBehaviour:
       - m_Target: {fileID: 8856326510351541628, guid: d07739051801fa54c9ebdaa099da5b58, type: 3}
         m_TargetAssemblyTypeName: GridManager, Assembly-CSharp
         m_MethodName: ChangeRows
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2221,13 +2221,21 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8856326510351541628, guid: d07739051801fa54c9ebdaa099da5b58, type: 3}
+      propertyPath: m_NumRows
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856326510351541628, guid: d07739051801fa54c9ebdaa099da5b58, type: 3}
       propertyPath: m_NumLines
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8856326510351541628, guid: d07739051801fa54c9ebdaa099da5b58, type: 3}
+      propertyPath: sliderCols
+      value: 
+      objectReference: {fileID: 1152378331}
+    - target: {fileID: 8856326510351541628, guid: d07739051801fa54c9ebdaa099da5b58, type: 3}
       propertyPath: sliderRows
       value: 
-      objectReference: {fileID: 1765844290}
+      objectReference: {fileID: 1765844292}
     - target: {fileID: 8856326510351541628, guid: d07739051801fa54c9ebdaa099da5b58, type: 3}
       propertyPath: m_cellPrefab
       value: 
