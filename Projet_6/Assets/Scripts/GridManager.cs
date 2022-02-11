@@ -4,85 +4,50 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    public static GridManager Instance;
     #region Show in Inspector
-
-    [SerializeField]
-    [Range(0,50)]
-    private int _numCol = 10;
-
-    [SerializeField]
-    [Range(0, 50) ]
-    private int _numLines = 10;
-
-    [SerializeField]
-    private GameObject _cellPrefab;
-
+    [SerializeField] private GameObject _cellPrefab;
     #endregion
-
-
 
     #region Public
+    [Range(0, 50)]
+    public int m_NumCol = 10;
 
+    [Range(0, 50)]
+    public int m_NumLines = 10;
     public GameObject[,] m_Grid;
-    
     #endregion
 
-
-    // Init sin los otros componenetes
+    #region Singleton
+    public static GridManager Instance;
     private void Awake() 
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this);
-
+            DontDestroyOnLoad(this);           
+        }
+        else
+        {
+            Destroy(gameObject);
         }
         GenerateGrid();
     }
     private void GenerateGrid()
     {
-        m_Grid = new GameObject[_numCol, _numLines];
+        m_Grid = new GameObject[m_NumCol, m_NumLines];
 
-        for (int line = 0; line < _numLines; line++)
+        for (int row = 0; row < m_NumLines; row++)
         {
-            for (int col = 0; col < _numCol; col++)
+            for (int col = 0; col < m_NumCol; col++)
             {
-                Vector3 pos = new Vector3(col, line, 0);
+                Vector3 pos = new Vector3(col, row, 0);
 
                 GameObject clone = Instantiate(_cellPrefab, pos, Quaternion.identity);
-                m_Grid[col, line] = clone;
+                clone.name = $"[{row},{col}]";
+                m_Grid[col, row] = clone;
             }
         }
     }
-    private void OnEnable()
-    {
-
-    }
-
-    // Start is called before the first frame / Init con los otros componentes
-    private void Start()
-    {
-
-    }
-
-    // Update is called once per frame / Logica e Inputs
-    private void Update()
-    {
-
-    }
-
-    private void FixedUpdate()
-    {
-
-    }
-    private void OnDisable()
-    {
-
-    }
-    private void OnDestroy()
-    {
-
-    }
-    
+    #endregion
+   
 }

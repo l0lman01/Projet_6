@@ -4,38 +4,41 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    void Update()
+    [SerializeField]private Material _aliveMaterial;
+    [SerializeField]private Material _deadMaterial;
+    [SerializeField] private GridManager _gridManager;
+    private void Awake()
     {
+        _gridManager = FindObjectOfType<GridManager>();
+        Debug.Log(_gridManager.GetComponent<GameObject>());
+    }
+    private void Update()
+    {        
         if (Input.GetMouseButtonDown(0)) 
         {
             Vector3 mousePosition = Input.mousePosition;
-            
-            Debug.Log($"Left click on: {mousePosition}");
-
             Camera mainCamera = Camera.main ;
             Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
-            Debug.Log($"Left click on: {mousePosition}/{mouseWorldPosition}");
+            Debug.Log($"Left click on: {mouseWorldPosition}");
+            var col = Mathf.FloorToInt(mouseWorldPosition.x);
+            var row = Mathf.FloorToInt(mouseWorldPosition.y);
+            Debug.Log($"Left click on: {mouseWorldPosition.x}/{mouseWorldPosition.y}");
 
-           // GridManager.Instance.m_Grid;
-
-            
+            if(col>= 0&& col< GridManager.Instance.m_NumCol&&
+                row>= 0 && row < GridManager.Instance.m_NumLines)
+            {
+                var cell = GridManager.Instance.m_Grid[col, row];
+               // var cell = cellGo.GetComponent<Cell>()
+                var meshRenderer = cell.GetComponentInChildren<MeshRenderer>();
+                if (meshRenderer.sharedMaterial == _aliveMaterial)
+                {
+                    meshRenderer.sharedMaterial = _deadMaterial;
+                }
+                else if (meshRenderer.sharedMaterial == _deadMaterial)
+                {
+                    meshRenderer.sharedMaterial = _aliveMaterial;
+                }
+            }
         }
-
-
-        /*if (Input.GetMouseButton(0))
-        {
-            Debug.Log("left click");
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            Debug.Log("Stop left click");
-        }
-        
-
-
-        if (Input.GetMouseButton(1))
-        {
-            Debug.Log("Right click");
-        }*/
     }
 }
