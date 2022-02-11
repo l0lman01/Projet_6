@@ -25,7 +25,7 @@ public class InputManager : MonoBehaviour
             Debug.Log($"Left click on: {mouseWorldPosition.x}/{mouseWorldPosition.y}");
 
             if(col>= 0&& col< GridManager.Instance.m_NumCol&&
-                row>= 0 && row < GridManager.Instance.m_NumLines)
+                row>= 0 && row < GridManager.Instance.m_NumRows)
             {
                 var cell = GridManager.Instance.m_Grid[col, row];
                // var cell = cellGo.GetComponent<Cell>()

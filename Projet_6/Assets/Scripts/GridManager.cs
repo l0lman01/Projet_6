@@ -13,7 +13,7 @@ public class GridManager : MonoBehaviour
     public int m_NumCol = 10;
 
     [Range(0, 50)]
-    public int m_NumLines = 10;
+    public int m_NumRows = 10;
     public GameObject[,] m_Grid;
     #endregion
 
@@ -32,11 +32,19 @@ public class GridManager : MonoBehaviour
         }
         GenerateGrid();
     }
-    private void GenerateGrid()
+    public void GenerateGrid()
     {
-        m_Grid = new GameObject[m_NumCol, m_NumLines];
 
-        for (int row = 0; row < m_NumLines; row++)
+       /* if (m_Grid != null)
+        {
+            foreach(var cell in m_Grid)
+            {
+                Destroy(cell.)
+            }
+        }*/
+        m_Grid = new GameObject[m_NumCol, m_NumRows];
+
+        for (int row = 0; row < m_NumRows; row++)
         {
             for (int col = 0; col < m_NumCol; col++)
             {
@@ -49,5 +57,12 @@ public class GridManager : MonoBehaviour
         }
     }
     #endregion
-   
+    public void ChangeRows(int value)
+    {
+        m_NumRows = ((int)value);
+    }
+    public void ChangeCols(int value)
+    {
+        m_NumCol= ((int)value);
+    }
 }
