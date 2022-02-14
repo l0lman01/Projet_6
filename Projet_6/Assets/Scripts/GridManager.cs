@@ -43,7 +43,7 @@ public class GridManager : MonoBehaviour
             {
                 Destroy(cell.gameObject);
             }
-        }
+       }
 
         m_Grid = new Cell[m_NumCol, m_NumRows];
 

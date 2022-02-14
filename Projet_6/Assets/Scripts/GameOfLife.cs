@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
  
 
 public class GameOfLife : MonoBehaviour
@@ -10,28 +11,44 @@ public class GameOfLife : MonoBehaviour
     [SerializeField] private Material _aliveMaterial;
     [SerializeField] private Material _deadMaterial;
 
+    private float nextActionTime = 0.0f;
+    public float period = 0.1f;
+
     private void Awake()
     {
-     
+        Time.timeScale = 0;
+    }
+    private void Update()
+    {
+        if (Time.time > nextActionTime)
+        {
+            nextActionTime += period;
+            // execute block of code here
+            CountNeighbors();
+        }
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+    }
+    public void Resume()
+    {
+        Time.timeScale = 1;
+    }
+
+    public void Speed(float newSpeed)
+    {
+        period = newSpeed;
+    }
+
+    public void CountNeighbors()
+    {
         Object obj = FindObjectOfType(typeof(GridManager));
         _gridManager = (GridManager)obj;
         _gridManager = obj as GridManager;
         _gridManager = FindObjectOfType<GridManager>();
         FindObjectOfType<GridManager>();
-
-        
-    }
-
-    //private void SimulationStep()
-    //{
-    //    Debug.Log("SimulationStep");
-
-    //    int n = CountNeighbors(col, row);
-    //}
-
-    public void CountNeighbors()
-    {
-        
 
         for (int i = 0; i < _gridManager.m_NumRows; i++)
         {
@@ -112,6 +129,7 @@ public class GameOfLife : MonoBehaviour
                 }
             }
         }
+
         for (int i = 0; i < _gridManager.m_NumRows; i++)
         {
             for (int j = 0; j < _gridManager.m_NumCol; j++)
@@ -119,7 +137,6 @@ public class GameOfLife : MonoBehaviour
                 var cell = GridManager.Instance.m_Grid[j, i];
                 var meshRenderer = cell.GetComponentInChildren<MeshRenderer>();
 
-                
                 if (cell.m_Neighbors == 3)// 3 neighbors -> alive
                 {
                     cell.m_isAlive = true;
@@ -130,10 +147,7 @@ public class GameOfLife : MonoBehaviour
                     cell.m_isAlive = false;
                     meshRenderer.sharedMaterial = _deadMaterial;
                 }
-
             }
         }
-        
     }                
-        
 }
