@@ -6,11 +6,14 @@ using UnityEngine.UI;
 
 public class GameOfLife : MonoBehaviour
 {
-    public float _stepDelay;
     [SerializeField] private GridManager _gridManager;
     [SerializeField] private Material _aliveMaterial;
     [SerializeField] private Material _deadMaterial;
 
+<<<<<<< Updated upstream
+=======
+    [Range(0, 20)]
+>>>>>>> Stashed changes
     private float nextActionTime = 0.0f;
     public float period = 0.1f;
 
@@ -26,6 +29,7 @@ public class GameOfLife : MonoBehaviour
             // execute block of code here
             CountNeighbors();
         }
+<<<<<<< Updated upstream
     }
 
     public void Pause()
@@ -42,6 +46,42 @@ public class GameOfLife : MonoBehaviour
         period = newSpeed;
     }
 
+=======
+    }
+    
+    public void Pause()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1;
+    }
+    public void ChangeSpeed(float value)
+    {
+        period = value;        
+    }
+
+    public void ResetGrid()
+    {
+        Object obj = FindObjectOfType(typeof(GridManager));
+        _gridManager = (GridManager)obj;
+        _gridManager = obj as GridManager;
+        _gridManager = FindObjectOfType<GridManager>();
+        FindObjectOfType<GridManager>();
+
+        for (int i = 0; i < _gridManager.m_NumRows; i++)
+        {
+            for (int j = 0; j < _gridManager.m_NumCol; j++)
+            {
+                var cell = GridManager.Instance.m_Grid[j, i];                
+                cell.m_isAlive = false;               
+            }
+        }
+    }
+
+>>>>>>> Stashed changes
     public void CountNeighbors()
     {
         Object obj = FindObjectOfType(typeof(GridManager));
@@ -67,6 +107,18 @@ public class GameOfLife : MonoBehaviour
                         cell.m_Neighbors += 1;
                     }
                 }
+                else
+                {
+                    var otherCell = GridManager.Instance.m_Grid[j, _gridManager.m_NumRows - 1];
+                    if (otherCell.m_isAlive == true)
+                    {
+                        cell.m_Neighbors += 1;
+                    }
+                }
+
+
+
+
                 if (i + 1 >= 0 && i + 1 < _gridManager.m_NumRows)//up
                 {
                     var otherCell = GridManager.Instance.m_Grid[j, i + 1];
@@ -75,6 +127,19 @@ public class GameOfLife : MonoBehaviour
                         cell.m_Neighbors += 1;
                     }
                 }
+                else
+                {
+                    var otherCell = GridManager.Instance.m_Grid[j, 0];
+                    if (otherCell.m_isAlive == true)
+                    {
+                        cell.m_Neighbors += 1;
+                    }
+                }
+
+
+
+
+
                 if (j - 1 >= 0 && j - 1 < _gridManager.m_NumRows)//left
                 {
                     var otherCell = GridManager.Instance.m_Grid[j - 1, i];
@@ -83,6 +148,22 @@ public class GameOfLife : MonoBehaviour
                         cell.m_Neighbors += 1;
                     }
                 }
+                else
+                {
+                    var otherCell = GridManager.Instance.m_Grid[_gridManager.m_NumCol - 1, i];
+                    if (otherCell.m_isAlive == true)
+                    {
+                        cell.m_Neighbors += 1;
+                    }
+                }
+
+
+
+
+
+
+
+
                 if (j + 1 >= 0 && j + 1 < _gridManager.m_NumRows)//right
                 {
                     var otherCell = GridManager.Instance.m_Grid[j + 1, i];
@@ -91,6 +172,21 @@ public class GameOfLife : MonoBehaviour
                         cell.m_Neighbors += 1;
                     }
                 }
+                else
+                {
+                    var otherCell = GridManager.Instance.m_Grid[0, i];
+                    if (otherCell.m_isAlive == true)
+                    {
+                        cell.m_Neighbors += 1;
+                    }
+                }
+
+
+
+
+
+
+
                 if (i + 1 >= 0 && i + 1 < _gridManager.m_NumRows &&
                     j - 1 >= 0 && j - 1 < _gridManager.m_NumRows)//diagonal up left
                 {
@@ -100,6 +196,41 @@ public class GameOfLife : MonoBehaviour
                         cell.m_Neighbors += 1;
                     }
                 }
+                else if (i + 1 >= 0 && i + 1 < _gridManager.m_NumRows &&
+                         (j - 1 < 0 || j - 1 >= _gridManager.m_NumRows))
+                {
+                    var otherCell = GridManager.Instance.m_Grid[_gridManager.m_NumCol - 1, i + 1];
+                    if (otherCell.m_isAlive == true)
+                    {
+                        cell.m_Neighbors += 1;
+                    }
+                }
+                else if ((i + 1 < 0 || i + 1 >= _gridManager.m_NumRows) &&
+                    j - 1 >= 0 && j - 1 < _gridManager.m_NumRows)
+                {
+                    var otherCell = GridManager.Instance.m_Grid[j - 1, 0];
+                    if (otherCell.m_isAlive == true)
+                    {
+                        cell.m_Neighbors += 1;
+                    }
+                }
+                else if ((i + 1 < 0 || i + 1 >= _gridManager.m_NumRows) &&
+                    (j - 1 < 0 || j - 1 >= _gridManager.m_NumRows))
+                {
+                    var otherCell = GridManager.Instance.m_Grid[_gridManager.m_NumCol - 1, 0];
+                    if (otherCell.m_isAlive == true)
+                    {
+                        cell.m_Neighbors += 1;
+                    }
+                }
+
+
+
+
+
+
+
+
                 if (i + 1 >= 0 && i + 1 < _gridManager.m_NumRows &&
                     j + 1 >= 0 && j + 1 < _gridManager.m_NumRows)//diagonal up right
                 {
@@ -109,6 +240,40 @@ public class GameOfLife : MonoBehaviour
                         cell.m_Neighbors += 1;
                     }
                 }
+                else if (i + 1 >= 0 && i + 1 < _gridManager.m_NumRows &&
+                    (j + 1 < 0 || j + 1 >= _gridManager.m_NumRows))
+                {
+                    var otherCell = GridManager.Instance.m_Grid[0, i + 1];
+                    if (otherCell.m_isAlive == true)
+                    {
+                        cell.m_Neighbors += 1;
+                    }
+                }
+                else if ((i + 1 < 0 || i + 1 >= _gridManager.m_NumRows) &&
+                    j + 1 >= 0 && j + 1 < _gridManager.m_NumRows)
+                {
+                    var otherCell = GridManager.Instance.m_Grid[j + 1, 0];
+                    if (otherCell.m_isAlive == true)
+                    {
+                        cell.m_Neighbors += 1;
+                    }
+                }
+                else if ((i + 1 < 0 || i + 1 >= _gridManager.m_NumRows) &&
+                    (j + 1 < 0 || j + 1 >= _gridManager.m_NumRows))
+                {
+                    var otherCell = GridManager.Instance.m_Grid[0,0];
+                    if (otherCell.m_isAlive == true)
+                    {
+                        cell.m_Neighbors += 1;
+                    }
+                }
+
+
+
+
+
+
+
                 if (i - 1 >= 0 && i - 1 < _gridManager.m_NumRows &&
                     j - 1 >= 0 && j - 1 < _gridManager.m_NumRows)//diagonal down left
                 {
@@ -118,6 +283,38 @@ public class GameOfLife : MonoBehaviour
                         cell.m_Neighbors += 1;                      
                     }
                 }
+                else if (i - 1 >= 0 && i - 1 < _gridManager.m_NumRows &&
+                    (j - 1 < 0 || j - 1 >= _gridManager.m_NumRows))
+                {
+                    var otherCell = GridManager.Instance.m_Grid[_gridManager.m_NumCol - 1, i - 1];
+                    if (otherCell.m_isAlive == true)
+                    {
+                        cell.m_Neighbors += 1;
+                    }
+                }
+                else if ((i - 1 < 0 || i - 1 >= _gridManager.m_NumRows) &&
+                    j - 1 >= 0 && j - 1 < _gridManager.m_NumRows)
+                {
+                    var otherCell = GridManager.Instance.m_Grid[j - 1, _gridManager.m_NumRows - 1];
+                    if (otherCell.m_isAlive == true)
+                    {
+                        cell.m_Neighbors += 1;
+                    }
+                }
+                else if ((i - 1 < 0 || i - 1 >= _gridManager.m_NumRows) &&
+                    (j - 1 < 0 || j - 1 >= _gridManager.m_NumRows))
+                {
+                    var otherCell = GridManager.Instance.m_Grid[_gridManager.m_NumCol - 1, _gridManager.m_NumRows - 1]; ;
+                    if (otherCell.m_isAlive == true)
+                    {
+                        cell.m_Neighbors += 1;
+                    }
+                }
+
+
+
+
+
                 if (i - 1 >= 0 && i - 1 < _gridManager.m_NumRows &&
                     j + 1 >= 0 && j + 1 < _gridManager.m_NumRows)//diagonal down right
                 {
@@ -125,6 +322,33 @@ public class GameOfLife : MonoBehaviour
                     if (otherCell.m_isAlive == true)
                     {
                         cell.m_Neighbors += 1;                        
+                    }
+                }      
+                else if (i - 1 >= 0 && i - 1 < _gridManager.m_NumRows &&
+                    (j + 1 > 0 || j + 1 >= _gridManager.m_NumRows))
+                {
+                    var otherCell = GridManager.Instance.m_Grid[0, i - 1];
+                    if (otherCell.m_isAlive == true)
+                    {
+                        cell.m_Neighbors += 1;
+                    }
+                }
+                else if ((i - 1 < 0 || i - 1 >= _gridManager.m_NumRows) &&
+                    j + 1 >= 0 && j + 1 < _gridManager.m_NumRows)
+                {
+                    var otherCell = GridManager.Instance.m_Grid[j + 1, _gridManager.m_NumRows - 1];
+                    if (otherCell.m_isAlive == true)
+                    {
+                        cell.m_Neighbors += 1;
+                    }
+                }
+                else if ((i - 1 < 0 || i - 1 >= _gridManager.m_NumRows )&&
+                    (j + 1 < 0 || j + 1 >= _gridManager.m_NumRows))
+                {
+                    var otherCell = GridManager.Instance.m_Grid[0 , _gridManager.m_NumRows - 1];
+                    if (otherCell.m_isAlive == true)
+                    {
+                        cell.m_Neighbors += 1;
                     }
                 }
             }
@@ -148,6 +372,12 @@ public class GameOfLife : MonoBehaviour
                     meshRenderer.sharedMaterial = _deadMaterial;
                 }
             }
+<<<<<<< Updated upstream
         }
     }                
 }
+=======
+        }       
+    }                       
+}
+>>>>>>> Stashed changes
