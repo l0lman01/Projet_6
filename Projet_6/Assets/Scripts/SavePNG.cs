@@ -43,10 +43,10 @@ public class SavePNG : MonoBehaviour
 
         // Encode texture into PNG
         byte[] bytes = tex.EncodeToPNG();
-        var path = Application.dataPath + "/SavedImage";
+        var path = Application.dataPath + "/SavedImage/";
         if (!Directory.Exists(path)){
             Directory.CreateDirectory(path);
         }
-        File.WriteAllBytes(path + ".png", bytes);
+        File.WriteAllBytes(path + "0.png", bytes);
     }
 }
