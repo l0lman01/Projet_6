@@ -6,7 +6,7 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField]private Material _aliveMaterial;
     [SerializeField]private Material _deadMaterial;
-    [SerializeField]private GridManager _gridManager;
+    [SerializeField] private GridManager _gridManager;
     private void Awake()
     {
         //ancienne façon
@@ -22,7 +22,7 @@ public class InputManager : MonoBehaviour
         FindObjectOfType<GridManager>();
     }
 
-    public void ChangeCell(Cell cell)
+    private void ChangeCell(Cell cell)
     {
         var meshRenderer = cell.GetComponentInChildren<MeshRenderer>();
 
@@ -38,13 +38,16 @@ public class InputManager : MonoBehaviour
             Debug.Log("dead");
             meshRenderer.sharedMaterial = _aliveMaterial;
             cell.m_isAlive = true;
+
         }
     }
 
     void Update()
     {
+
         if (Input.GetMouseButtonDown(0))
         {
+
             Vector3 mousePosition = Input.mousePosition;
             Camera mainCamera = Camera.main;
             Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
@@ -65,4 +68,5 @@ public class InputManager : MonoBehaviour
             }
         }
     }
+    
 }
