@@ -7,7 +7,7 @@ public class GridManager : MonoBehaviour
     public static GridManager Instance;
 
     #region Show in Inspector
-    [SerializeField] private Cell _cellPrefab;
+    [SerializeField] public Cell _cellPrefab;
     #endregion
 
     #region Public

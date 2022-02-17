@@ -49,4 +49,6 @@ public class SavePNG : MonoBehaviour
         }
         File.WriteAllBytes(path + "0.png", bytes);
     }
+
+
 }

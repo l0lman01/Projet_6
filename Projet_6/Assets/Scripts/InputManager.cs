@@ -38,7 +38,6 @@ public class InputManager : MonoBehaviour
             Debug.Log("dead");
             meshRenderer.sharedMaterial = _aliveMaterial;
             cell.m_isAlive = true;
-
         }
     }
 
